@@ -1,7 +1,12 @@
 import "./App.css";
+import { Header } from "./components";
 
 function App() {
-  return <h1 className="bg-purple-600">starter file</h1>;
+  return (
+    <main className="">
+      <Header />
+    </main>
+  );
 }
 
 export default App;
