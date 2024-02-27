@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { LocationIcon } from "../../assets/icons";
 
 export function Header() {
+  const [openOptionList, setOpenOptionList] = useState(false);
+
   return (
     <nav className="flex justify-center">
       <div className="h-full w-full container flex items-center justify-between border border-solid border-gray-200 rounded-2xl p-4">
@@ -17,7 +19,11 @@ export function Header() {
         <div className="">b</div>
         <span className="h-8 border-0 border-r-2 border-solid border-gray-200 "></span>
 
-        <div className="">c</div>
+        <div
+          className=""
+          onClick={() => setOpenOptionList((isOpen) => !isOpen)}>
+          s {openOptionList && ""}
+        </div>
         <span className="h-8 border-0 border-r-2 border-solid border-gray-200 "></span>
 
         <div className="">d</div>
