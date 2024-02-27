@@ -1,5 +1,3 @@
-// import React from "react";
-
 export function LocationIcon({ fill = "currentColor", className = "w-6 h-6" }) {
   return (
     <svg
