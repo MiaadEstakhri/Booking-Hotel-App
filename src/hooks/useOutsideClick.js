@@ -3,7 +3,6 @@ import { useEffect } from "react";
 export default function useOutsideClick(ref, exceptionId, cb) {
     useEffect(() => {
         const handleOutsideClick = (event) => {
-            console.log(event.target.id);
             if (
                 ref.current &&
                 !ref.current.contains(event.target) &&
