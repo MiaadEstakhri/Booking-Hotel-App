@@ -36,7 +36,7 @@ export function Header() {
 
         <div className="relative">
           <div
-            className="cursor-pointer"
+            className="cursor-pointer text-sm"
             onClick={() => setIsOpenOptionList((isOpen) => !isOpen)}>
             Adult : {optionList.Adult} &bull; Children : {optionList.Children}{" "}
             &bull; Room : {optionList.Room}
