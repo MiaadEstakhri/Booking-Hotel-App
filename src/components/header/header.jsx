@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { LocationIcon, MinusIcon, PlusIcon } from "../../assets/icons";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 export function Header() {
   const [isOpenOptionList, setIsOpenOptionList] = useState(false);
@@ -37,6 +38,7 @@ export function Header() {
         <div className="relative">
           <div
             className="cursor-pointer text-sm"
+            id="openOptionList"
             onClick={() => setIsOpenOptionList((isOpen) => !isOpen)}>
             Adult : {optionList.Adult} &bull; Children : {optionList.Children}{" "}
             &bull; Room : {optionList.Room}
@@ -45,6 +47,7 @@ export function Header() {
             <GuestOptionList
               option={optionList}
               handleOptions={handleOptions}
+              setIsOpenOptionList={setIsOpenOptionList}
             />
           )}
         </div>
@@ -56,9 +59,15 @@ export function Header() {
   );
 }
 
-function GuestOptionList({ option, handleOptions }) {
+function GuestOptionList({ option, handleOptions, setIsOpenOptionList }) {
+  const refOutside = useRef();
+  useOutsideClick(refOutside, "openOptionList", () =>
+    setIsOpenOptionList(false)
+  );
   return (
-    <div className="flex flex-col  gap-3 absolute -right-12 top-7 bg-white rounded-xl p-4 shadow-md shadow-gray-400">
+    <div
+      className="flex flex-col  gap-3 absolute -right-12 top-7 bg-white rounded-xl p-4 shadow-md shadow-gray-400"
+      ref={refOutside}>
       <OptionItem
         option={option}
         minLimit={1}
