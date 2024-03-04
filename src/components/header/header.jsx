@@ -3,6 +3,7 @@ import { LocationIcon, MinusIcon, PlusIcon } from "../../assets/icons";
 import useOutsideClick from "../../hooks/useOutsideClick";
 
 export function Header() {
+  const [searchHotel, setSearchHotel] = useState("");
   const [isOpenOptionList, setIsOpenOptionList] = useState(false);
   const [optionList, setOptionList] = useState({
     Adult: 1,
@@ -29,6 +30,7 @@ export function Header() {
             type="text"
             className="w-full outline-none border-0 text-sm"
             placeholder="Where to go?"
+            onChange={(event) => setSearchHotel(event.target.value)}
           />
         </div>
         <span className="h-8 border-0 border-r-2 border-solid border-gray-200 "></span>
