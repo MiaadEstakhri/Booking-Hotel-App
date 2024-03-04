@@ -52,12 +52,14 @@ export function Header() {
           />
         </div>
         <span className="h-8 border-0 border-r-2 border-solid border-gray-200 "></span>
-        <div className="relative" onClick={() => setIsOpenDate(!isOpenDate)}>
-          <div className="flex items-center gap-3">
+        <div className="relative">
+          <div
+            className="flex items-center gap-3 cursor-pointer "
+            onClick={() => setIsOpenDate(!isOpenDate)}>
             <span>
               <CalenderIcon className="w-5 h-5" fill="#6b21a8" />
             </span>
-            <span className="text-sm">{`${format(
+            <span className="text-xs sm:text-sm">{`${format(
               date[0].startDate,
               "MM/dd/yyyy"
             )}   to   ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
@@ -78,8 +80,8 @@ export function Header() {
             className="cursor-pointer text-sm"
             id="openOptionList"
             onClick={() => setIsOpenOptionList((isOpen) => !isOpen)}>
-            Adult : {optionList.Adult} &bull; Children : {optionList.Children}{" "}
-            &bull; Room : {optionList.Room}
+            {optionList.Adult} adult &bull; {optionList.Children} children{" "}
+            &bull; {optionList.Room} room
           </div>
           {isOpenOptionList && (
             <GuestOptionList
