@@ -9,6 +9,7 @@ import useOutsideClick from "../../hooks/useOutsideClick";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import { format } from "date-fns";
 
 export function Header() {
   const [searchHotel, setSearchHotel] = useState("");
@@ -19,6 +20,13 @@ export function Header() {
     Children: 0,
     Room: 1,
   });
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
 
   const handleOptions = (name, operation) => {
     setOptionList((prev) => {
@@ -44,13 +52,24 @@ export function Header() {
           />
         </div>
         <span className="h-8 border-0 border-r-2 border-solid border-gray-200 "></span>
-        <div className="">
-          <div>
+        <div className="relative" onClick={() => setIsOpenDate(!isOpenDate)}>
+          <div className="flex items-center gap-3">
             <span>
               <CalenderIcon className="w-5 h-5" fill="#6b21a8" />
             </span>
+            <span className="text-sm">{`${format(
+              date[0].startDate,
+              "MM/dd/yyyy"
+            )}   to   ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
           </div>
-          <div></div>
+          {isOpenDate && (
+            <div className="absolute">
+              <DateRange
+                ranges={date}
+                onChange={(item) => setDate([item.selection])}
+              />
+            </div>
+          )}
         </div>
         <span className="h-8 border-0 border-r-2 border-solid border-gray-200 "></span>
 
