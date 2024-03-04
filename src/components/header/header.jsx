@@ -13,6 +13,7 @@ import "react-date-range/dist/theme/default.css";
 export function Header() {
   const [searchHotel, setSearchHotel] = useState("");
   const [isOpenOptionList, setIsOpenOptionList] = useState(false);
+  const [isOpenDate, setIsOpenDate] = useState(false);
   const [optionList, setOptionList] = useState({
     Adult: 1,
     Children: 0,
