@@ -1,6 +1,14 @@
 import React, { useRef, useState } from "react";
-import { LocationIcon, MinusIcon, PlusIcon } from "../../assets/icons";
+import {
+  CalenderIcon,
+  LocationIcon,
+  MinusIcon,
+  PlusIcon,
+} from "../../assets/icons";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import { DateRange } from "react-date-range";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
 
 export function Header() {
   const [searchHotel, setSearchHotel] = useState("");
@@ -24,17 +32,25 @@ export function Header() {
   return (
     <nav className="flex justify-center">
       <div className="h-full w-full container flex items-center justify-between border border-solid border-gray-200 rounded-2xl p-4">
-        <div className=" flex items-center gap-2">
+        <div className=" flex items-center gap-2 ">
           <LocationIcon className="w-5 h-5 " fill="#ef4444" />
           <input
             type="text"
             className="w-full outline-none border-0 text-sm"
             placeholder="Where to go?"
+            value={searchHotel}
             onChange={(event) => setSearchHotel(event.target.value)}
           />
         </div>
         <span className="h-8 border-0 border-r-2 border-solid border-gray-200 "></span>
-        <div className="">b</div>
+        <div className="">
+          <div>
+            <span>
+              <CalenderIcon className="w-5 h-5" fill="#6b21a8" />
+            </span>
+          </div>
+          <div></div>
+        </div>
         <span className="h-8 border-0 border-r-2 border-solid border-gray-200 "></span>
 
         <div className="relative">
