@@ -1,5 +1,5 @@
 import { Toaster } from "react-hot-toast";
-import { Header } from "./components";
+import { Header, LocationList } from "./components";
 import "./App.css";
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
     <main className="">
       <Toaster />
       <Header />
+      <LocationList />
     </main>
   );
 }
