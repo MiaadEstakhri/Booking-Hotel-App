@@ -29,6 +29,9 @@ export function Header() {
   const [isOpenOptionList, setIsOpenOptionList] = useState(false);
   const [isOpenDate, setIsOpenDate] = useState(false);
 
+  const refOutside = useRef();
+  useOutsideClick(refOutside, "openDate", () => setIsOpenDate(false));
+
   const handleOptions = (name, operation) => {
     setOptionList((prev) => {
       return {
@@ -53,7 +56,7 @@ export function Header() {
           />
         </div>
         <span className="h-8 border-0 border-r-2 border-solid border-gray-200 "></span>
-        <div className="relative">
+        <div className="relative" ref={refOutside} id="openDate">
           <div
             className="flex items-center gap-3 cursor-pointer "
             onClick={() => setIsOpenDate(!isOpenDate)}>
@@ -66,7 +69,7 @@ export function Header() {
             )}   to   ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
           </div>
           {isOpenDate && (
-            <div className="absolute top-7 ">
+            <div className="absolute top-7">
               <DateRange
                 ranges={date}
                 onChange={(item) => setDate([item.selection])}
