@@ -1,20 +1,19 @@
 import React, { useRef, useState } from "react";
+import { DateRange } from "react-date-range";
+import { format } from "date-fns";
+import useOutsideClick from "../../hooks/useOutsideClick";
 import {
   CalenderIcon,
   LocationIcon,
   MinusIcon,
   PlusIcon,
+  SearchIcon,
 } from "../../assets/icons";
-import useOutsideClick from "../../hooks/useOutsideClick";
-import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import { format } from "date-fns";
 
 export function Header() {
   const [searchHotel, setSearchHotel] = useState("");
-  const [isOpenOptionList, setIsOpenOptionList] = useState(false);
-  const [isOpenDate, setIsOpenDate] = useState(false);
   const [optionList, setOptionList] = useState({
     Adult: 1,
     Children: 0,
@@ -27,6 +26,8 @@ export function Header() {
       key: "selection",
     },
   ]);
+  const [isOpenOptionList, setIsOpenOptionList] = useState(false);
+  const [isOpenDate, setIsOpenDate] = useState(false);
 
   const handleOptions = (name, operation) => {
     setOptionList((prev) => {
@@ -65,10 +66,11 @@ export function Header() {
             )}   to   ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
           </div>
           {isOpenDate && (
-            <div className="absolute">
+            <div className="absolute top-7 ">
               <DateRange
                 ranges={date}
                 onChange={(item) => setDate([item.selection])}
+                className="shadow-black"
               />
             </div>
           )}
@@ -91,9 +93,13 @@ export function Header() {
             />
           )}
         </div>
-        <span className="h-8 border-0 border-r-2 border-solid border-gray-200 "></span>
+        {/* <span className="h-8 border-0 border-r-2 border-solid border-gray-200 "></span> */}
 
-        <div className="">d</div>
+        <div className="">
+          <button className="bg-purple-700 p-2 rounded-xl">
+            <SearchIcon className="w-5 h-5" stroke="#fff" />
+          </button>
+        </div>
       </div>
     </nav>
   );
