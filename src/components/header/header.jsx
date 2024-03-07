@@ -44,18 +44,18 @@ export function Header() {
 
   return (
     <nav className="flex justify-center">
-      <div className="h-full w-full container flex items-center justify-between border border-solid border-gray-200 rounded-2xl p-4">
+      <div className="h-full w-full  flex items-center justify-between border border-solid border-gray-200 rounded-2xl p-1 sm:p-4 ">
         <div className=" flex items-center gap-2 ">
           <LocationIcon className="w-5 h-5 " fill="#ef4444" />
           <input
             type="text"
-            className="w-full outline-none border-0 text-sm"
+            className="w-full outline-none border-0 text-[.50rem] sm:text-sm"
             placeholder="Where to go?"
             value={searchHotel}
             onChange={(event) => setSearchHotel(event.target.value)}
           />
         </div>
-        <span className="h-8 border-0 border-r-2 border-solid border-gray-200 "></span>
+        <span className="h-8 border-0 border-r-2 border-solid border-gray-200 mx-1 sm:mx-0"></span>
         <div className="relative" ref={refOutside} id="openDate">
           <div
             className="flex items-center gap-3 cursor-pointer "
@@ -63,7 +63,7 @@ export function Header() {
             <span>
               <CalenderIcon className="w-5 h-5" fill="#6b21a8" />
             </span>
-            <span className="text-xs sm:text-sm">{`${format(
+            <span className="text-[.50rem] sm:text-sm">{`${format(
               date[0].startDate,
               "MM/dd/yyyy"
             )}   to   ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
@@ -78,15 +78,16 @@ export function Header() {
             </div>
           )}
         </div>
-        <span className="h-8 border-0 border-r-2 border-solid border-gray-200 "></span>
+        <span className="h-8 border-0 border-r-2 border-solid border-gray-200 mx-1 sm:mx-0"></span>
 
         <div className="relative">
           <div
-            className="cursor-pointer text-sm"
+            className="md:flex gap-3 cursor-pointer  text-[.50rem] sm:text-sm "
             id="openOptionList"
             onClick={() => setIsOpenOptionList((isOpen) => !isOpen)}>
-            {optionList.Adult} adult &bull; {optionList.Children} children{" "}
-            &bull; {optionList.Room} room
+            <p className="text-wrap">{optionList.Adult} adult</p>
+            <p className="text-nowrap">{optionList.Children} children</p>
+            <p className="text-wrap">{optionList.Room} room</p>
           </div>
           {isOpenOptionList && (
             <GuestOptionList
@@ -100,7 +101,7 @@ export function Header() {
 
         <div className="">
           <button className="bg-purple-700 p-2 rounded-xl">
-            <SearchIcon className="w-5 h-5" stroke="#fff" />
+            <SearchIcon className="w-4 h-4 sm:w-5 sm:h-5" stroke="#fff" />
           </button>
         </div>
       </div>
@@ -115,7 +116,7 @@ function GuestOptionList({ option, handleOptions, setIsOpenOptionList }) {
   );
   return (
     <div
-      className="flex flex-col  gap-3 absolute -right-12 top-7 bg-white rounded-xl p-4 shadow-md shadow-gray-400"
+      className="flex flex-col  gap-3 absolute-right-12 top-7 bg-white rounded-xl p-4 shadow-md shadow-gray-400"
       ref={refOutside}>
       <OptionItem
         option={option}
