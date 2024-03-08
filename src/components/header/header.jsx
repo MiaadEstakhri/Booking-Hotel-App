@@ -1,5 +1,10 @@
 import React, { useRef, useState } from "react";
 import { DateRange } from "react-date-range";
+import {
+  createSearchParams,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { format } from "date-fns";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import {
@@ -28,6 +33,7 @@ export function Header() {
   ]);
   const [isOpenOptionList, setIsOpenOptionList] = useState(false);
   const [isOpenDate, setIsOpenDate] = useState(false);
+  const navigate = useNavigate();
 
   const refOutside = useRef();
   useOutsideClick(refOutside, "openDate", () => setIsOpenDate(false));
@@ -39,6 +45,19 @@ export function Header() {
         [name]:
           operation === "inc" ? optionList[name] + 1 : optionList[name] - 1,
       };
+    });
+  };
+
+  const handleSearch = () => {
+    const encodedParams = createSearchParams({
+      date: JSON.stringify(date),
+      searchHotel,
+      optionList: JSON.stringify(optionList),
+    });
+
+    navigate({
+      pathname: "/hotels",
+      search: encodedParams.toString(),
     });
   };
 
@@ -100,7 +119,9 @@ export function Header() {
         {/* <span className="h-8 border-0 border-r-2 border-solid border-gray-200 "></span> */}
 
         <div className="">
-          <button className="bg-purple-700 p-2 rounded-xl">
+          <button
+            className="bg-purple-700 p-2 rounded-xl"
+            onClick={handleSearch}>
             <SearchIcon className="w-4 h-4 sm:w-5 sm:h-5" stroke="#fff" />
           </button>
         </div>
@@ -116,7 +137,7 @@ function GuestOptionList({ option, handleOptions, setIsOpenOptionList }) {
   );
   return (
     <div
-      className="flex flex-col  gap-3 absolute-right-12 top-7 bg-white rounded-xl p-4 shadow-md shadow-gray-400"
+      className="flex flex-col  gap-3 absolute right-12 top-7 bg-white rounded-xl p-4 shadow-md shadow-gray-400"
       ref={refOutside}>
       <OptionItem
         option={option}
