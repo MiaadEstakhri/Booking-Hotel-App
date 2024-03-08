@@ -22,7 +22,7 @@ export function LocationList() {
                 </p>
                 <p className="text-xs text-gray-400">{item?.name}</p>
                 <p className="text-xs sm:text-small">
-                  $ {item.price}{" "}
+                  $ {item?.price}
                   <span className="text-gray-400 px-1"> ( night )</span>
                 </p>
               </div>
